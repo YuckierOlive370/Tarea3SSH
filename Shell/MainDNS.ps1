@@ -4,7 +4,7 @@
 $con = "S"
 
 while ($con -match '^[sS]$') {
-    Write-Host "Tarea 2: Automatizacion y Gestion del Servidor DNS"-ForegroundColor Yellow
+    Write-Host "Tarea 3: Automatizacion y Gestion del Servidor DNS"-ForegroundColor Yellow
     Write-Host "++++++++ Menu de Opciones ++++++++"
     Write-Host "1.-Verificar la presencia del servicio"
     Write-Host "2.-Instalar el servicio"
@@ -25,4 +25,4 @@ while ($con -match '^[sS]$') {
         default{Write-Host "Opcion no valida" -ForegroundColor Red}
     }
 }
-Write-Host "Programa terminado. -ForegroundColor Yellow"
+Write-Host "Programa terminado." -ForegroundColor Yellow
