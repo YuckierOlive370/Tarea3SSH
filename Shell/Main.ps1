@@ -12,9 +12,9 @@ while ($con -match '^[sS]$') {
     switch($op){
         1{. .\MainDHCP.ps1}
         2{. .\MainDNS.ps1}
-        2{. .\MainSSH.ps1}
-        3{$con = "n"}
+        3{. .\MainSSH.ps1}
+        4{$con = "n"}
         default{Write-Host "Opcion no valida"}
     }
 }
-Write-Host "Programa terminado."
+Write-Host "Programa terminado." -ForegroundColor Yellow
