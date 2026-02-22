@@ -12,9 +12,26 @@ VerificarRoot() {
 
 InstalarPaquete() {
     local paquete=$1
-    echo "Instalando paquete: $paquete"
-    apt update -y
-    apt install -y "$paquete"
+    read -p "¿Deseas Instalarlo? (S/N): " r
+    if [[ $r =~ ^[sS]$ ]]; then
+    echo "Instalando paquete: '$paquete'"
+    apt update -y -qq > /dev/null 2>&1
+    apt install "$paquete" -y -qq > /dev/null 2>&1
+    echo "Instalacion finalizada"
+    fi
+}
+
+VerificarPaquete() {
+    local paquete=$1
+    if dpkg -l | grep -q "$paquete"; then
+        echo "'$paquete' ya está instalado"
+        read -p "¿Deseas reinstalarlo? (S/N): " r
+        if [[ $r =~ ^[sS]$ ]]; then
+            InstalarPaquete
+        fi
+    else
+        echo "El servicio '$paquete' no está instalado"
+    fi
 }
 
 ValidarIp() { # valida formato y descarta 255.255.255.255 y 0.0.0.0

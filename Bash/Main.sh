@@ -1,4 +1,5 @@
 #!/bin/bash
+source ./FunGENERALES.sh
 ./VerificarRoot
 while true; do
     echo "===== Menu de Opciones ====="

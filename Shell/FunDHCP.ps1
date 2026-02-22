@@ -135,31 +135,6 @@ else {
 
 }
 
-function Instalar {
-    Write-Host "Iniciando Configuraciones..." -ForegroundColor Green
-    try{
-        Install-WindowsFeature DHCP -IncludeManagementTools -ErrorAction Stop | Out-Null
-        Write-Host "Instalacion finalizada" -ForegroundColor Green
-    }
-    catch{
-        Write-Host "Instalacion fallida..." -ForegroundColor Red
-    }
-}
-
-function VerificarServicio {
-    if ((Get-WindowsFeature -Name DHCP).Installed) {
-        Write-Host "El rol DHCP ya esta instalado."
-    } else {
-        Write-Host "El rol DHCP no esta instalado."
-        $respuesta = Read-Host "¿Deseas instalarlo ahora? (S/N)"
-        if ($respuesta -match '^[sS]$') {
-            Instalar
-        } else {
-            Write-Host "Instalacion cancelada por el usuario."
-        }
-    }
-}
-
 function ReiniciarDHCP {
     Write-Host "Reiniciando servicio DHCP..."
     try {

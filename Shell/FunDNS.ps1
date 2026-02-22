@@ -1,14 +1,5 @@
 . .\FunGENERALES.ps1
 
-function VerificarServicio {
-    if ((Get-WindowsFeature -Name DNS).Installed) {
-        Write-Host "DNS ya esta instalado."
-    } else {
-        Write-Host "DNS no esta instalado."
-        Instalar
-    }
-}
-
 function ValidarDominio{
     param (
         [string]$dominio
@@ -22,17 +13,6 @@ function ValidarDominio{
     }else {
         Write-Host  "Dominio no valido, intenta de nuevo" -ForegroundColor Red
         return $false
-    }
-}
-
-function Instalar {
-    $respuesta = Read-Host "¿Deseas instalarlo ahora? (S/N)"
-    if ($respuesta -match '^[sS]$') {
-        Write-Host  "Instalando" -ForegroundColor Green
-        Install-WindowsFeature -Name DNS -IncludeManagementTools -Confirm:$false -ErrorAction SilentlyContinue | Out-Null
-        Write-Host  "Instalacion finalizad" -ForegroundColor Green
-    } else {
-        Write-Host "Instalacion cancelada por el usuario." -ForegroundColor Red
     }
 }
 

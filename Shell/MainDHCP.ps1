@@ -14,8 +14,8 @@ while ($con -match '^[sS]$') {
     Write-Host "6.-Salir"
     $op = [int](Read-Host "Selecciona: ")
     switch($op){
-        1{VerificarServicio}
-        2{Instalar}
+        1{VerificarPaquete "DHCP"}
+        2{InstalarPaquete "DHCP"}
         3{Configurar}
         4{ListarConcesiones}
         5{ReiniciarDHCP}

@@ -13,9 +13,36 @@ function InstalarPaquete {
     param (
         [string]$FeatureName
     )
+    $respuesta = Read-Host "¿Deseas instalarlo ahora $FeatureName? (S/N)"
+    if ($respuesta -match '^[sS]$') {
+        try{
+            Write-Host  "Instalando" -ForegroundColor Green
+            Install-WindowsFeature -Name $FeatureName -IncludeManagementTools -Confirm:$false -ErrorAction SilentlyContinue | Out-Null
+            Write-Host  "Instalacion finalizada" -ForegroundColor Green
+        }
+        catch{
+            Write-Host  "Error de Instalacion" -ForegroundColor Red
+        }
+    } else {
+        Write-Host "Instalacion cancelada por el usuario." -ForegroundColor Red
+    }
+}
 
-    Write-Host "Instalando característica: $FeatureName"
-    Install-WindowsFeature -Name $FeatureName -IncludeManagementTools
+function VerificarPaquete {
+    param (
+        [string]$FeatureName
+    )
+    if ((Get-WindowsFeature -Name $FeatureName).Installed) {
+        Write-Host "El $FeatureName ya esta instalado."
+    } else {
+        Write-Host "El $FeatureName no esta instalado."
+        $respuesta = Read-Host "¿Deseas instalarlo ahora? (S/N)"
+        if ($respuesta -match '^[sS]$') {
+            InstalarPaquete $FeatureName
+        } else {
+            Write-Host "Instalacion cancelada por el usuario."
+        }
+    }
 }
 
 function Validar-IP {

@@ -4,21 +4,7 @@ source ./FunGENERALES.sh
 INTERFAZ="ens37"
 MASCARA="255.255.255.0"
 
-VerificarServicio() {
-    if dpkg -l | grep -q isc-dhcp-server; then
-        read -p "DHCP ya instalado. ¿Deseas reinstalarlo? (S/N): " r
-        if [[ $r =~ ^[sS]$ ]]; then
-            sudo apt-get remove isc-dhcp-server -y > /dev/null 2>&1
-            Instalar
-        else
-            echo "Se mantiene la instalación existente"
-        fi
-    else
-        echo "El servicio DHCP no esta instalado"
-    fi
-}
-
-Instalar() {
+Configurar() {
     if dpkg -l | grep -q isc-dhcp-server; then
         echo "DHCP ya esta instalado si quieres volver a instalarlo vee a Verificar servicio..."
         return 1
@@ -91,9 +77,8 @@ EOF
         $(( (redInt >> 8) & 255 ))
     )
 
-    echo "Instalando DHCP..."
+    echo "Configurando DHCP..."
     sudo apt-get update -y -qq > /dev/null 2>&1
-    sudo apt-get install isc-dhcp-server -y -qq > /dev/null 2>&1
     sudo systemctl enable isc-dhcp-server > /dev/null 2>&1
     sudo sed -i "s/^INTERFACESv4=.*/INTERFACESv4=\"$INTERFAZ\"/" /etc/default/isc-dhcp-server
 

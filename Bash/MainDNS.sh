@@ -13,8 +13,8 @@ while true; do
     read -p "Selecciona una opción: " opcion
 
     case $opcion in
-        1) VerificarServicio ;;
-        2) Instalar ;;
+        1) VerificarPaquete "bind9 dnsutils" ;;
+        2) InstalarPaquete "bind9 dnsutils" ;;
         3) Configurar ;;
         4) Reconfigurar ;;
         5) ABCdominios ;;

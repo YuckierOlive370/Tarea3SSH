@@ -1,4 +1,5 @@
 . .\FunGENERALES.ps1
+. .\FunSSH.ps1
 
 $con = "S"
 
@@ -6,11 +7,19 @@ while ($con -match '^[sS]$') {
     Write-Host "Tarea 4: SSH"-ForegroundColor Yellow
     Write-Host "++++++++ Menu de Opciones ++++++++"
     Write-Host "1.-Instalar"
-    Write-Host "2.-Salir"
+    Write-Host "2.-Verificar Servicio"
+    Write-Host "3.-Mostrar el Usuario actual"
+    Write-Host "4.-Listar Usuarios"
+    Write-Host "5.-Crear Usuario"
+    Write-Host "6.-Salir"
     $op = [int](Read-Host "Selecciona: ")
     switch($op){
-        1{. .\FunSSH.ps1}
-        2{$con = "n"}
+        1{InstalarPaquete "SSH"}
+        2{VerificarPaquete "SSH"}
+        3{MostrarUsuarioActual}
+        4{ListarUsuarios}
+        5{CrearUsuario}
+        6{$con = "n"}
         default{Write-Host "Opcion no valida" -ForegroundColor Red}
     }
 }

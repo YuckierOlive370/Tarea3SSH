@@ -5,17 +5,19 @@ while true; do
     echo "===== Automatización y Gestión del Servidor DHCP ====="
     echo "1.- Verificar la presencia del servicio"
     echo "2.- Instalar el servicio"
-    echo "3.- Monitoreo"
-    echo "4.- Reiniciar Servicios"
-    echo "5.- Salir"
+    echo "3.- Configurar"
+    echo "4.- Monitoreo"
+    echo "5.- Reiniciar Servicios"
+    echo "6.- Salir"
     read -p "Selecciona una opción: " opcion
 
     case $opcion in
-        1) VerificarServicio ;;
-        2) Instalar ;;
-        3) ListarConcesiones ;;
-        4) Reiniciar ;;
-        5) echo "Saliendo..."; break ;;
+        1) VerificarPaquete "isc-dhcp-server" ;;
+        2) InstalarPaquete "isc-dhcp-server" ;;
+        3) Configurar ;;
+        4) ListarConcesiones ;;
+        5) Reiniciar ;;
+        6) echo "Saliendo..."; break ;;
         *) echo "Opción inválida" ;;
     esac
     echo ""
