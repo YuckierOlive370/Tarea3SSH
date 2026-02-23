@@ -62,12 +62,8 @@ function IP-a-Int {
 }
 
 function Pedir-IP {
-    param (
-        [string]$mensaje
-    )
-
     do {
-        $ip = Read-Host $mensaje
+        $ip = Read-Host
         if (-not (Validar-IP $ip)) {
             Write-Host "IP no valida, intenta de nuevo"
         }
