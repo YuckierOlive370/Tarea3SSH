@@ -18,17 +18,21 @@ function CrearUsuario {
         Write-Output "El usuario $UserName ya existe."
     }
     else {
-        $Password = Read-Host "Introduce una contraseña para $UserName" -AsSecureString
+        Write-Host "Introduce un Password para $UserName"
+        $Password = Read-Host -AsSecureString
         New-LocalUser -Name $UserName -Password $Password -FullName $UserName -Description "Usuario creado desde PowerShell"
 
         # Agregar al grupo Administradores
         Add-LocalGroupMember -Group "Administrators" -Member $UserName
 
-        Write-Output "Usuario $UserName creado y agregado al grupo Administrators."
+        Write-Host "Usuario $UserName creado y agregado al grupo Administrators."
     }
 }
 
 function AbrirPuerto22 {
+    # Iniciar el servicio ssh
+    Start-Service sshd
+    Set-Service -Name sshd -StartupType Automatic
     # Regla Firewall para abilitar el puerto 22
     New-NetFirewallRule -Name "SSH" `
         -DisplayName "OpenSSH Server (Port 22)" `
@@ -47,5 +51,5 @@ function EliminarClaveSSH {
     )
     # Elimina la clave antigua del archivo known_hosts
     ssh-keygen -R $Host
-    Write-Output "Clave SSH antigua para $Host eliminada de known_hosts."
+    Write-Host "Clave SSH antigua para $Host eliminada de known_hosts."
 }

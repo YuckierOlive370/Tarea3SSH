@@ -11,7 +11,7 @@ while ($con -match '^[sS]$') {
     Write-Host "3.-Mostrar el Usuario actual"
     Write-Host "4.-Listar Usuarios"
     Write-Host "5.-Crear Usuario"
-    Write-Host "6.-Abrir puerto 22"
+    Write-Host "6.-Abrir puerto 22 y iniciar ssh"
     Write-Host "7.-Salir"
     Write-Host "Selecciona: "
     $op = [int](Read-Host)

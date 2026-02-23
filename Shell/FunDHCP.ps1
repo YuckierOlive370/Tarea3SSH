@@ -32,7 +32,7 @@ function Configurar {
     $gateway = Read-Host "Gateway (opcional, no ingreses nada si no aplica)"
     $subnetMask = Get-SubnetMaskFromIP $fixedIP
     $prefix = Get-PrefixLength -SubnetMask $subnetMask
-    Write-Host "Máscara calculada: $subnetMask (/$prefix)"
+    Write-Host "Mascara calculada: $subnetMask (/$prefix)"
 
     try {
         # Aporte soto sol
