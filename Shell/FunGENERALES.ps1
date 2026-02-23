@@ -13,7 +13,8 @@ function InstalarPaquete {
     param (
         [string]$FeatureName
     )
-    $respuesta = Read-Host "¿Deseas instalarlo ahora $FeatureName? (S/N)"
+    Write-Host "¿Deseas instalarlo ahora $FeatureName? (S/N)"
+    $respuesta = Read-Host
     if ($respuesta -match '^[sS]$') {
         try{
             Write-Host  "Instalando" -ForegroundColor Green

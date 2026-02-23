@@ -20,10 +20,12 @@ function Get-SubnetMaskFromIP {
 function Configurar {
     Write-Host "Iniciando Configuraciones..." -ForegroundColor Green
 
-    $scopeName = Read-Host "Nombre del ambito"
+    Write-Host "Nombre del ambito"
+    $scopeName = Read-Host
 
     # Capturar la IP fija (servidor)
-    $fixedIP = Pedir-IP "IP fija del servidor"
+    Write-Host "IP fija del servidor"
+    $fixedIP = Pedir-IP
     Write-Host "IP fija del servidor: $fixedIP"
 
     # Configurar la IP fija en la interfaz de red
@@ -59,7 +61,8 @@ function Configurar {
 
     do {
         # Pedir la IP final
-        $endIP  = Pedir-IP "IP final"
+        Write-Host "IP final"
+        $endIP  = Pedir-IP
         $endInt = IP-a-Int $endIP
 
         # Validar rango
@@ -81,11 +84,14 @@ function Configurar {
     $endNet = $endInt -band $maskInt
 
     # DNS primario y alternativo opcionales 
-    $dns = Read-Host "DNS primario (opcional)" 
-    $dnsAlt = Read-Host "DNS alternativo (opcional)"
+    Write-Host "DNS primario (opcional)"
+    $dns = Read-Host
+    Write-Host "DNS alternativo (opcional)"
+    $dnsAlt = Read-Host
 
     do {
-        $lease = Read-Host "Tiempo de concesion (dias)"
+        Write-Host "Tiempo de concesion (dias)"
+        $lease = Read-Host
     } until ($lease -match '^\d+$')
 
     try {

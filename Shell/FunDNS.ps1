@@ -26,8 +26,8 @@ function Configurar {
     } else {
     return
     }
-
-    $opc = Read-Host "Opciones 1.-Asignar tu IP fija 2.-Asignar tu mismo la IP: "
+    Write-Host "Opciones 1.-Asignar tu IP fija 2.-Asignar tu mismo la IP: "
+    $opc = Read-Host
     if ($opc -eq 1) {
         Write-Host "Elegiste opcion 1."
 
@@ -39,7 +39,8 @@ function Configurar {
 
     }  else {
         Write-Host "No se cuenta con IP fija"
-            $IP = Pedir-IP "IP fija del servidor"
+            Write-Host "IP fija del servidor"
+            $IP = Pedir-IP
             $prefix = Get-PrefixLength -SubnetMask $subnetMask
         try {
             Remove-NetIPAddress -InterfaceIndex 11 -Confirm:$false
@@ -56,14 +57,16 @@ function Configurar {
     }
     elseif ($opc -eq 2) {
         Write-Host "Elegiste opcion 2."
-        $IP = Pedir-IP "IP perzonalizada: "
+        Write-Host "IP perzonalizada: "
+        $IP = Pedir-IP
     }
     else {
         Write-Host "Opcion no valida..."
     }
 
     do {
-        $dominio = Read-Host "Ingresa el dominio: "
+        Write-Host "Ingresa el dominio: "
+        $dominio = Read-Host
     } until (ValidarDominio $dominio)
     
     try{
@@ -92,7 +95,8 @@ function Agregar{
 
 function Borrar{
     do {
-        $dominio = Read-Host "Ingresa el dominio: "
+        Write-Host "Ingresa el dominio: "
+        $dominio = Read-Host
     } until (ValidarDominio $dominio)
     try{
         Remove-DnsServerZone -Name "$dominio" -Force
@@ -105,7 +109,8 @@ function Borrar{
 
 function Consultar{
     do {
-        $dominio = Read-Host "Ingresa el dominio: "
+        Write-Host "Ingresa el dominio: "
+        $dominio = Read-Host
     } until (ValidarDominio $dominio)
     $Zona = Get-DnsServerZone -Name $dominio -ErrorAction SilentlyContinue
     Get-DnsServerZone -Name "$dominio"
@@ -126,8 +131,8 @@ function ABC{
     Write-Host "2.-Borrar"
     Write-Host "3.-Consultar"
     Write-Host "4.-Regreso al Menu"
-
-    $op = [int](Read-Host "Selecciona: ")
+    Write-Host "Selecciona: "
+    $op = [int](Read-Host)
     switch($op){
         1{Agregar}
         2{Borrar}

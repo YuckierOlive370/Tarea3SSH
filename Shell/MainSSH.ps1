@@ -13,7 +13,8 @@ while ($con -match '^[sS]$') {
     Write-Host "5.-Crear Usuario"
     Write-Host "6.-Abrir puerto 22"
     Write-Host "7.-Salir"
-    $op = [int](Read-Host "Selecciona: ")
+    Write-Host "Selecciona: "
+    $op = [int](Read-Host)
     switch($op){
         1{InstalarPaquete "SSH"}
         2{VerificarPaquete "SSH"}
