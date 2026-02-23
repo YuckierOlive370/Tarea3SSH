@@ -5,11 +5,6 @@ INTERFAZ="ens37"
 MASCARA="255.255.255.0"
 
 Configurar() {
-    if dpkg -l | grep -q isc-dhcp-server; then
-        echo "DHCP ya esta instalado si quieres volver a instalarlo vee a Verificar servicio..."
-        return 1
-    fi
-
     echo "Iniciando la configuracion..."
     read -p "Nombre del ambito: " scope
 

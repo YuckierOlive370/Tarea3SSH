@@ -4,18 +4,6 @@ source ./FunGENERALES.sh
 INTERFAZ="ens37"
 MASCARA="255.255.255.0"
 
-VerificarServicio() {
-    if dpkg -l | grep -q bind9; then
-        echo "DNS ya está instalado"
-        read -p "¿Deseas reinstalarlo? (S/N): " r
-        if [[ $r =~ ^[sS]$ ]]; then
-            instalar
-        fi
-    else
-        echo "El servicio DNS no está instalado"
-    fi
-}
-
 CalcularRedInversa() {
     local ip=$1
     local IFS=.

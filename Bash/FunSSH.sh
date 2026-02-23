@@ -10,9 +10,7 @@ function ListarUsuarios() {
 }
 
 function CrearUsuario() {
-    param (
-        [string]$FeatureName
-    )
+    local FeatureName=$1
     if $FeatureName &>/dev/null; then
         echo "El usuario $FeatureName ya existe."
     else
