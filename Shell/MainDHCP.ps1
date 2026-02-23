@@ -23,4 +23,4 @@ while ($con -match '^[sS]$') {
         default{Write-Host "Opcion no valida"}
     }
 }
-Write-Host "Programa terminado."
+Write-Host "Programa terminado." -ForegroundColor Yellow

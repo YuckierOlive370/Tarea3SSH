@@ -11,7 +11,8 @@ while ($con -match '^[sS]$') {
     Write-Host "3.-Mostrar el Usuario actual"
     Write-Host "4.-Listar Usuarios"
     Write-Host "5.-Crear Usuario"
-    Write-Host "6.-Salir"
+    Write-Host "6.-Abrir puerto 22"
+    Write-Host "7.-Salir"
     $op = [int](Read-Host "Selecciona: ")
     switch($op){
         1{InstalarPaquete "SSH"}
@@ -19,7 +20,8 @@ while ($con -match '^[sS]$') {
         3{MostrarUsuarioActual}
         4{ListarUsuarios}
         5{CrearUsuario}
-        6{$con = "n"}
+        6{AbrirPuerto22}
+        7{$con = "n"}
         default{Write-Host "Opcion no valida" -ForegroundColor Red}
     }
 }

@@ -6,7 +6,7 @@ while ($con -match '^[sS]$') {
     Write-Host "++++++++ Menu de Opciones ++++++++"
     Write-Host "1.-Gestion de DHCP"
     Write-Host "2.-Gestion de DNS"
-    Write-Host "2.-Gestion de SSH"
+    Write-Host "3.-Gestion de SSH"
     Write-Host "3.-Salir"
     $op = [int](Read-Host "Selecciona: ")
     switch($op){

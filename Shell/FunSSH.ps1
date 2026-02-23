@@ -27,3 +27,25 @@ function CrearUsuario {
         Write-Output "Usuario $UserName creado y agregado al grupo Administrators."
     }
 }
+
+function AbrirPuerto22 {
+    # Regla Firewall para abilitar el puerto 22
+    New-NetFirewallRule -Name "SSH" `
+        -DisplayName "OpenSSH Server (Port 22)" `
+        -Enabled True `
+        -Direction Inbound `
+        -Protocol TCP `
+        -Action Allow `
+        -LocalPort 22
+
+    Write-Output "Puerto 22 habilitado en el firewall."
+}
+
+function EliminarClaveSSH {
+    param (
+        [string]$Host
+    )
+    # Elimina la clave antigua del archivo known_hosts
+    ssh-keygen -R $Host
+    Write-Output "Clave SSH antigua para $Host eliminada de known_hosts."
+}
